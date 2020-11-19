@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import jsPDF from 'jspdf'
-import { type } from 'os'
 
 
 @Component({
@@ -21,21 +20,12 @@ export class AppComponent {
 
   fields: FormlyFieldConfig[] = [
     {
-      key: 'Nombre del docente',
-      type: 'input',
-      templateOptions:{
-        label: 'Nombre del/la Docente-Capacitador/a:',
-        required: true,
-        placeholder: 'Ingrese el nombre completo del docente'
-      }
-    },
-    {
       className: 'datos-personales',
       template: '<div class="coltit"><h2 style="color:#53aae0;">Datos personales:</h2></div>',
     },
 
 
-    // EMPRESA
+    // datos personales
 
     {
       key: 'Datos personales',
@@ -45,148 +35,157 @@ export class AppComponent {
       },
       fieldArray: {
         fieldGroup: [
-        {
-          key: 'Apellido',
-          type: 'input',
-          templateOptions: {
-            label: 'Apellido',
-            placeholder: 'Ingrese el o los apellidos',
-            required: true,
+          {
+            key: 'Nombre del docente',
+            type: 'input',
+            templateOptions:{
+              label: 'Nombre del/la Docente-Capacitador/a:',
+              required: true,
+              placeholder: 'Ingrese el nombre completo del docente'
+            }
           },
-        },
-        {
-          key: 'Nombres',
-          type: 'input',
-          templateOptions: {
-            label: 'Nombres (Ley de Identidad de Género 26.743 art.12)',
-            placeholder: 'Ingrese uno o varios nombres',
-            required: true,
+          {
+            key: 'Apellido',
+            type: 'input',
+            templateOptions: {
+              label: 'Apellido',
+              placeholder: 'Ingrese el o los apellidos',
+              required: true,
+            },
           },
-        },
-        {
-          key: 'DNI',
-          type: 'input',
-          templateOptions:{
-            label: 'DNI',
-            pattern: '\\d{7,8}',
-            required: true,
-            placeholder: 'Ingrese un DNI',
-          }
-        },
-        {
-          key: 'CUIT',
-          type: 'input',
-          templateOptions:{
-            label: 'CUIT',
-            pattern: '\\d{11}',
-            required: true,
-            placeholder: 'Ingrese un CUIT',
-          }
-        },
-        {
-          key: 'Lugar de nacimiento',
-          type: 'input',
-          templateOptions: {
-            label: 'Lugar de nacimiento',
-            placeholder: 'Ingrese un lugar de nacimiento'
-          }
-        },
-        {
-          key: 'Fecha de nacimiento',
-          type: 'input',
-          templateOptions: {
-            type: 'date',
-            placeholder: 'Ingrese una fecha de nacimiento',
-            label: 'Fecha de nacimiento',
-          }
-        },
-        {
-          key: 'Nacionalidad',
-          type: 'input',
-          templateOptions: {
-            label: 'Nacionalidad',
-            placeholder: 'Ingrese una nacionalidad'
-          }
-        },
-        {
-          key: 'Domicilio',
-          type: 'input',
-          templateOptions: {
-            label: 'Domicilio',
-            placeholder: 'Ingrese un domicilio'
-          }
-        },
-        {
-          key: 'Correo electrónico personal',
-          type: 'input',
-          templateOptions: {
-            label: 'Correo electrónico personal',
-            placeholder: 'Ingrese un correo electrónico'
-          }
-        },
-        {
-          key: 'Correo electrónico alternativo',
-          type: 'input',
-          templateOptions: {
-            label: 'Correo electrónico alternativo',
-            placeholder: 'Ingrese un correo electrónico'
-          }
-        },
-        {
-          key: 'Correo electrónico alternativo 2',
-          type: 'input',
-          templateOptions: {
-            label: 'Correo electrónico alternativo 2',
-            placeholder: 'Ingrese un correo electrónico'
-          }
-        },
-        {
-          key: 'Teléfono móvil',
-          type: 'input',
-          templateOptions:{
-            label: 'Teléfono móvil',
-            placeholder: 'Ingrese un teléfono móvil',
-            pattern: '\\d{1,25}',
-          }
-        },
-        {
-          key: 'Teléfono laboral',
-          type: 'input',
-          templateOptions:{
-            label: 'Teléfono laboral',
-            placeholder: 'Ingrese un teléfono laboral',
-            pattern: '\\d{1,25}',
-          }
-        },
-        {
-          key: 'Teléfono alternativo',
-          type: 'input',
-          templateOptions:{
-            label: 'Teléfono alternativo',
-            placeholder: 'Ingrese un teléfono alternativo',
-            pattern: '\\d{1,25}',
-          }
-        },
-        {
-          key: 'Máximo nivel de estudio alcanzado',
-          type: 'select',
-          templateOptions: {
-            label: 'Máximo nivel de estudio alcanzado',
-            options:[
-              {value: 'Primario incompleto', label: 'Primario incompleto'},
-              {value: 'Primario completo', label: 'Primario completo'},
-              {value: 'Secundario incompleto', label: 'Secundario incompleto'},
-              {value: 'Secundario completo', label: 'Secundario completo'},
-              {value: 'Tercario incompleto', label: 'Terciario incompleto'},
-              {value: 'Terciario completo', label: 'Terciario completo'},
-              {value: 'Universitario incompleto', label: 'Universitario incompleto'},
-              {value: 'Universitario completo', label: 'Universitario completo'},
-            ]
-          }
-        },
-      ],
+          {
+            key: 'Nombres',
+            type: 'input',
+            templateOptions: {
+              label: 'Nombres (Ley de Identidad de Género 26.743 art.12)',
+              placeholder: 'Ingrese uno o varios nombres',
+              required: true,
+            },
+          },
+          {
+            key: 'DNI',
+            type: 'input',
+            templateOptions:{
+              label: 'DNI',
+              pattern: '\\d{7,8}',
+              required: true,
+              placeholder: 'Ingrese un DNI',
+            }
+          },
+          {
+            key: 'CUIT',
+            type: 'input',
+            templateOptions:{
+              label: 'CUIT',
+              pattern: '\\d{11}',
+              required: true,
+              placeholder: 'Ingrese un CUIT',
+            }
+          },
+          {
+            key: 'Lugar de nacimiento',
+            type: 'input',
+            templateOptions: {
+              label: 'Lugar de nacimiento',
+              placeholder: 'Ingrese un lugar de nacimiento'
+            }
+          },
+          {
+            key: 'Fecha de nacimiento',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              placeholder: 'Ingrese una fecha de nacimiento',
+              label: 'Fecha de nacimiento',
+            }
+          },
+          {
+            key: 'Nacionalidad',
+            type: 'input',
+            templateOptions: {
+              label: 'Nacionalidad',
+              placeholder: 'Ingrese una nacionalidad'
+            }
+          },
+          {
+            key: 'Domicilio',
+            type: 'input',
+            templateOptions: {
+              label: 'Domicilio',
+              placeholder: 'Ingrese un domicilio'
+            }
+          },
+          {
+            key: 'Correo electrónico personal',
+            type: 'input',
+            templateOptions: {
+              label: 'Correo electrónico personal',
+              placeholder: 'Ingrese un correo electrónico'
+            }
+          },
+          {
+            key: 'Correo electrónico alternativo',
+            type: 'input',
+            templateOptions: {
+              label: 'Correo electrónico alternativo',
+              placeholder: 'Ingrese un correo electrónico'
+            }
+          },
+          {
+            key: 'Correo electrónico alternativo 2',
+            type: 'input',
+            templateOptions: {
+              label: 'Correo electrónico alternativo 2',
+              placeholder: 'Ingrese un correo electrónico'
+            }
+          },
+          {
+            key: 'Teléfono móvil',
+            type: 'input',
+            templateOptions:{
+              label: 'Teléfono móvil',
+              placeholder: 'Ingrese un teléfono móvil',
+              pattern: '\\d{1,25}',
+            }
+          },
+          {
+            key: 'Teléfono laboral',
+            type: 'input',
+            templateOptions:{
+              label: 'Teléfono laboral',
+              placeholder: 'Ingrese un teléfono laboral',
+              pattern: '\\d{1,25}',
+            }
+          },
+          {
+            key: 'Teléfono alternativo',
+            type: 'input',
+            templateOptions:{
+              label: 'Teléfono alternativo',
+              placeholder: 'Ingrese un teléfono alternativo',
+              pattern: '\\d{1,25}',
+            }
+          },
+          {
+            key: 'Máximo nivel de estudio alcanzado',
+            type: 'select',
+            templateOptions: {
+              label: 'Máximo nivel de estudio alcanzado',
+              options:[
+                {value: 'Primario incompleto', label: 'Primario incompleto'},
+                {value: 'Primario completo', label: 'Primario completo'},
+                {value: 'Secundario incompleto', label: 'Secundario incompleto'},
+                {value: 'Secundario completo', label: 'Secundario completo'},
+                {value: 'Tercario incompleto', label: 'Terciario incompleto'},
+                {value: 'Terciario completo', label: 'Terciario completo'},
+                {value: 'Universitario incompleto', label: 'Universitario incompleto'},
+                {value: 'Universitario completo', label: 'Universitario completo'},
+              ]
+            }
+          },
+        ],
+      },
     },
-  },
 
  //--------------------------------------------------------------------------------------------------------
 
@@ -197,20 +196,25 @@ export class AppComponent {
 
   {
     key: 'Estudios Cursados',
-    type: 'no repeat',
+    type: 'repeat',
     templateOptions: {
       addText: 'Agregar Estudios Cursados',
     },
     fieldArray: {
       fieldGroup: [
-      {
-        key: 'Nivel medio',
-        type: 'no repeat',
-        templateOptions:{
-          addText: 'Nivel medio'
+        {
+          key: 'Nivel',
+          type: 'select',
+          templateOptions:{
+            label: 'Nivel',
+            options:[
+              {value: 'Nivel Medio', label: 'Nivel Medio'},
+              {value: 'Nivel Terciario', label: 'Nivel Terciario'},
+              {value: 'Nivel Universitario', label: 'Nivel Universitario'},
+              {value: 'Nivel Posgrado', label: 'Nivel Posgrado'},
+            ]
+          }
         },
-        fieldArray:{
-          fieldGroup: [
             {
               key: 'Institución',
               type: 'input',
@@ -278,465 +282,9 @@ export class AppComponent {
                 placeholder: 'Ingrese un titulo'
               }
             }
-          ]
-        }
-      },
-      {
-        key: 'Nivel terciario',
-        type: 'no repeat',
-        templateOptions:{
-          addText: 'Nivel terciario'
-        },
-        fieldArray:{
-          fieldGroup: [
-            {
-              key: 'Titulo obtenido',
-              type: 'input',
-              templateOptions:{
-                label:'Titulo obtenido',
-                placeholder: 'Ingrese un titulo'
-              }
-            },
-            {
-              key: 'Institución',
-              type: 'input',
-              templateOptions:{
-                label: 'Institución',
-                placeholder: 'Ingrese una institución'
-              }
-            },
-            {
-              key: 'Localidad',
-              type: 'input',
-              templateOptions:{
-                label: 'Localidad',
-                placeholder: 'Ingrese una localidad'
-              }
-            },
-            {
-              key: 'Provincia',
-              type: 'input',
-              templateOptions:{
-                label: 'Provincia',
-                placeholder: 'Ingrese una provincia'
-              }
-            },
-            {
-              key: 'País',
-              type: 'input',
-              templateOptions:{
-                label: 'País',
-                placeholder: 'Ingrese un país'
-              }
-            },
-            {
-              key: 'Completo, año de egreso',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'Completo. Año de egreso',
-                placeholder: 'Ingrese un año'
-              }
-            },
-            {
-              key: 'Titulo',
-              type: 'input',
-              templateOptions:{
-                label: 'Titulo',
-                placeholder: 'Ingrese un titulo'
-              }
-            },
-            {
-              key: 'Incompleto, años de cursado de',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'Incompleto. Años de cursado de:',
-                placeholder: 'Ingrese un año'
-              }
-            },
-            {
-              key: 'Incompleto, años de cursado a',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'a:',
-                placeholder: 'Ingrese un año'
-              }
-            },
-          ]
-        }
-      },
-      {
-        key: 'Nivel universitario',
-        type: 'no repeat',
-        templateOptions:{
-          addText: 'Nivel universitario'
-        },
-        fieldArray:{
-          fieldGroup: [
-            {
-              key: 'Formación terciaria 1',
-              type: 'no repeat',
-              templateOptions: {
-                addText: 'Formación terciaria 1',
-              },
-              fieldArray:{
-                fieldGroup:[
-                  {
-                    key: 'Formación terciaria 1',
-                    type: 'input',
-                    templateOptions:{
-                      label:'Formación terciaria 1',
-                      placeholder: 'Ingrese una formación'
-                    }
-                  },
-                  {
-                    key: 'Institución',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Institución',
-                      placeholder: 'Ingrese una institución'
-                    }
-                  },
-                  {
-                    key: 'Localidad',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Localidad',
-                      placeholder: 'Ingrese una localidad'
-                    }
-                  },
-                  {
-                    key: 'Provincia',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Provincia',
-                      placeholder: 'Ingrese una provincia'
-                    }
-                  },
-                  {
-                    key: 'País',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'País',
-                      placeholder: 'Ingrese un país'
-                    }
-                  },
-                  {
-                    key: 'Completo, año de egreso',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Completo. Año de egreso',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Titulo',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Titulo',
-                      placeholder: 'Ingrese un titulo'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado de',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Incompleto. Años de cursado de:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado a',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'a:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                ]
-              }
-            },
-            {
-              key: 'Formación terciaria 2',
-              type: 'no repeat',
-              templateOptions: {
-                addText: 'Formación terciaria 2',
-              },
-              fieldArray:{
-                fieldGroup:[
-                  {
-                    key: 'Formación terciaria 2',
-                    type: 'input',
-                    templateOptions:{
-                      label:'Formación terciaria 2',
-                      placeholder: 'Ingrese una formación'
-                    }
-                  },
-                  {
-                    key: 'Institución',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Institución',
-                      placeholder: 'Ingrese una institución'
-                    }
-                  },
-                  {
-                    key: 'Localidad',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Localidad',
-                      placeholder: 'Ingrese una localidad'
-                    }
-                  },
-                  {
-                    key: 'Provincia',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Provincia',
-                      placeholder: 'Ingrese una provincia'
-                    }
-                  },
-                  {
-                    key: 'País',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'País',
-                      placeholder: 'Ingrese un país'
-                    }
-                  },
-                  {
-                    key: 'Completo, año de egreso',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Completo. Año de egreso',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Titulo',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Titulo',
-                      placeholder: 'Ingrese un titulo'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado de',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Incompleto. Años de cursado de:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado a',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'a:',
-                      pattern: '\\d{1,2}',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                ]
-              },
-            }
-          ]
-        }
-      },
-      {
-        key: 'Nivel pos grado',
-        type: 'no repeat',
-        templateOptions:{
-          addText: 'Nivel pos grado'
-        },
-        fieldArray:{
-          fieldGroup: [
-            {
-              key: 'Formación universitaria 1',
-              type: 'no repeat',
-              templateOptions: {
-                addText: 'Formación universitaria 1',
-              },
-              fieldArray:{
-                fieldGroup:[
-                  {
-                    key: 'Formación universitaria 1',
-                    type: 'input',
-                    templateOptions:{
-                      label:'Formación universitaria 1',
-                      placeholder: 'Ingrese una formación'
-                    }
-                  },
-                  {
-                    key: 'Institución',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Institución',
-                      placeholder: 'Ingrese una institución'
-                    }
-                  },
-                  {
-                    key: 'Localidad',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Localidad',
-                      placeholder: 'Ingrese una localidad'
-                    }
-                  },
-                  {
-                    key: 'Provincia',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Provincia',
-                      placeholder: 'Ingrese una provincia'
-                    }
-                  },
-                  {
-                    key: 'País',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'País',
-                      placeholder: 'Ingrese un país'
-                    }
-                  },
-                  {
-                    key: 'Completo, año de egreso',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Completo. Año de egreso',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Titulo',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Titulo',
-                      placeholder: 'Ingrese un titulo'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado de',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Incompleto. Años de cursado de:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado a',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'a:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                ]
-              }
-            },
-            {
-              key: 'Formación universitaria 2',
-              type: 'no repeat',
-              templateOptions: {
-                addText: 'Formación universitaria 2',
-              },
-              fieldArray:{
-                fieldGroup:[
-                  {
-                    key: 'Formación universitaria 2',
-                    type: 'input',
-                    templateOptions:{
-                      label:'Formación universitaria 2',
-                      placeholder: 'Ingrese una formación'
-                    }
-                  },
-                  {
-                    key: 'Institución',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Institución',
-                      placeholder: 'Ingrese una institución'
-                    }
-                  },
-                  {
-                    key: 'Localidad',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Localidad',
-                      placeholder: 'Ingrese una localidad'
-                    }
-                  },
-                  {
-                    key: 'Provincia',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Provincia',
-                      placeholder: 'Ingrese una provincia'
-                    }
-                  },
-                  {
-                    key: 'País',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'País',
-                      pattern: '\\d{1,2}',
-                      placeholder: 'Ingrese un país'
-                    }
-                  },
-                  {
-                    key: 'Completo, año de egreso',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Completo. Año de egreso',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Titulo',
-                    type: 'input',
-                    templateOptions:{
-                      label: 'Titulo',
-                      placeholder: 'Ingrese un titulo'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado de',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'Incompleto. Años de cursado de:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                  {
-                    key: 'Incompleto, años de cursado a',
-                    type: 'input',
-                    templateOptions:{
-                      pattern: '\\d{1,2}',
-                      label: 'a:',
-                      placeholder: 'Ingrese un año'
-                    }
-                  },
-                ]
-              },
-            }
-          ]
-        }
-      },
-    ],
+      ]
+    }
   },
-},
 
   //--------------------------------------------------------------------------------------------------------
 
@@ -960,10 +508,10 @@ export class AppComponent {
         }
       },
       {
-        key: 'Funcióne principale',
-        type: 'select',
+        key: 'Funciónes principales',
+        type: 'input',
         templateOptions:{
-          label: 'Funcióne principale',
+          label: 'Funciónes principales',
           placeholder: 'Ingrese una función principal'
         }
       },
@@ -1119,15 +667,12 @@ export class AppComponent {
     let modelo = Object.entries(this.model);
     //
     var doc = new jsPDF('p','mm','a4');
-    //
-    var img = new Image();
-    img.src = 'assets/cabecera.jpg';
-    doc.addImage(img, 'jpg', 0, 0);
-    //
+    
+
     doc.setFont('helvetica')
 
-    let m = 30;
-    let y = 10;
+    let m = 5;
+    let y = 0;
     let x = 15;
     let i = 0; //
     //var arr:JSON[];
@@ -1152,9 +697,8 @@ export class AppComponent {
         for(var clave in arr[j]){
           if (y > 240 && x === 110) {
             doc.addPage();
-            doc.addImage(img, 'jpg', 0, 0);
-            m = 30;
-            y = 10;
+            m = 5;
+            y = 0;
             x = 15;
           }
           i++;
@@ -1183,9 +727,9 @@ export class AppComponent {
       y = y + 12;
     }
     let nombreArchivo = '00000000000';
-    nombreArchivo = this.model['Solicitante'][0]['CUIL'];
+    nombreArchivo = this.model['Datos personales'][0]['CUIT'];
       doc.output('dataurlnewwindow');
-      doc.save('solicitudCreditoL2' + nombreArchivo + '.pdf');
+      doc.save('InscripcionCapacitador' + nombreArchivo + '.pdf');
 
 
     } else (error) => {
