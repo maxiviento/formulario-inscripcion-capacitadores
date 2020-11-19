@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import jsPDF from 'jspdf'
-import { type } from 'os'
 
 
 @Component({
@@ -26,7 +25,7 @@ export class AppComponent {
     },
 
 
-    // EMPRESA
+    // datos personales
 
     {
       key: 'Datos personales',
@@ -509,10 +508,10 @@ export class AppComponent {
         }
       },
       {
-        key: 'Funcióne principale',
-        type: 'select',
+        key: 'Funciónes principales',
+        type: 'input',
         templateOptions:{
-          label: 'Funcióne principale',
+          label: 'Funciónes principales',
           placeholder: 'Ingrese una función principal'
         }
       },
@@ -668,15 +667,12 @@ export class AppComponent {
     let modelo = Object.entries(this.model);
     //
     var doc = new jsPDF('p','mm','a4');
-    //
-    var img = new Image();
-    img.src = 'assets/cabecera.jpg';
-    doc.addImage(img, 'jpg', 0, 0);
-    //
+    
+
     doc.setFont('helvetica')
 
-    let m = 30;
-    let y = 10;
+    let m = 5;
+    let y = 0;
     let x = 15;
     let i = 0; //
     //var arr:JSON[];
@@ -701,9 +697,8 @@ export class AppComponent {
         for(var clave in arr[j]){
           if (y > 240 && x === 110) {
             doc.addPage();
-            doc.addImage(img, 'jpg', 0, 0);
-            m = 30;
-            y = 10;
+            m = 5;
+            y = 0;
             x = 15;
           }
           i++;
@@ -732,9 +727,9 @@ export class AppComponent {
       y = y + 12;
     }
     let nombreArchivo = '00000000000';
-    nombreArchivo = this.model['Solicitante'][0]['CUIL'];
+    nombreArchivo = this.model['Datos personales'][0]['CUIT'];
       doc.output('dataurlnewwindow');
-      doc.save('solicitudCreditoL2' + nombreArchivo + '.pdf');
+      doc.save('InscripcionCapacitador' + nombreArchivo + '.pdf');
 
 
     } else (error) => {
