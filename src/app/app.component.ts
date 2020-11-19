@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import jsPDF from 'jspdf'
-import { type } from 'os'
+//import { type } from 'os'
 
 
 @Component({
