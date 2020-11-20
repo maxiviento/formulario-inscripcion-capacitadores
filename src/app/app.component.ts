@@ -261,21 +261,21 @@ export class AppComponent {
             }
           },
           {
-            key: 'Incompleto, años de cursado de',
+            key: 'Incompleto desde',
             type: 'input',
             templateOptions: {
-              pattern: '\\d{4}',
-              label: 'Incompleto. Años de cursado desde:',
-              placeholder: 'Ingrese un año'
+              type: 'date',
+              label: 'Incompleto desde:',
+              placeholder: 'Ingrese una fecha'
             }
           },
           {
-            key: 'Incompleto, años de cursado desde',
+            key: 'Incompleto hasta',
             type: 'input',
             templateOptions: {
-              pattern: '\\d{4}',
+              type: 'date',
               label: 'hasta:',
-              placeholder: 'Ingrese un año'
+              placeholder: 'Ingrese una fecha'
             }
           },
           {
