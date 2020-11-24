@@ -285,7 +285,11 @@ export class AppComponent {
               label: 'Titulo orientado a',
               placeholder: 'Ingrese un titulo'
             }
-          }
+          },
+          {
+            className: 'informacion-agregar',
+            template: '<div>El botón agregar es para habilitar un espacio más<p></div>',
+          },
         ]
       }
     },
@@ -304,6 +308,14 @@ export class AppComponent {
       },
       fieldArray: {
         fieldGroup: [
+          {
+            className: 'info-formacion-complementaria',
+            template: '<h3>Cursos, talleres de formación relacionados a los cursos/especialidades que se postula con una carga <b>minima de 20 hs.</b></h3>'
+          },
+          {
+            className: 'info-adjuntar',
+            template: '<h3>Si en el certificado no acredita la carga horaria, adjuntar analitico, módulos, ejes con carga horaria que de cuenta.</h3>'
+          },
           {
             key: 'Nombre del curso',
             type: 'input',
@@ -348,14 +360,11 @@ export class AppComponent {
               placeholder: 'Ingrese un año',
               pattern: '\\d{4}'
             }
-          }
+          },
         ]
       }
     },
-    {
-      className: 'info-formacion-complementaria',
-      template: '<h3>Cursos, talleres de formación relacionados a los cursos/especialidades que se postula con una carga minima de 20 hs.</h3>'
-    },
+    
 
     //-------------------------------------------------------------------------------------------------------
 
