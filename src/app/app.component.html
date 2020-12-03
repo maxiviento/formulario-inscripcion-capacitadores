@@ -2,43 +2,13 @@
   <h1>{{ title }}</h1>
 
   <form [formGroup]="form" >
-    <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>
-      <div flex = 33>
-        <h1>Usted debe saber</h1>
-      <ul>
-        <li>Tanto El/la solicitante como el/la garante deben ser personas hábiles mayores de edad (18 años cumplidos) y menor de 75 años.</li>
-        <li>Solicitante, su grupo familiar y garante, No deben tener deudas vencidas de créditos otorgados por del Gobierno de la Provincia de Córdoba.</li>
-        <!-- <li>5) Presentar fotocopia de carnet de CIDI (Ciudadano Digital - Gobierno de la Provincia de Córdoba). Salvo puntuales excepciones.</li>-->
-        <li>Tanto el titular como el garante deben tener domicilio dentro de la Provincia de Córdoba.</li>
-      </ul>
-    <h1>A tener en cuenta</h1>
-    <ul>
-      <li>Se otorga un crédito por grupo familiar.</li>
-      <li>A Solicitante y garante se le es requerido que cuenten con CIDI nivel 2 para ser beneficiario del Crédito. <a href="https://cidi.cba.gov.ar/portal-publico/que-es"> Más info</a></li>
-      <li>El solicitante debe debe ser titular de un Cuenta de Caja de Ahorro </li>
-    </ul>
-    
-    <h1>Al formulario generado en esta página le deberá adjuntar</h1>
-    <ul>
-      <li>Fotocopia del DNI del solicitante, del cónyuge y del grupo familiar.</li>
-      <li>Fotocopia de impuesto o servicio actualizada, donde conste su domicilio real (Impuesto Inmobiliario Provincial o Municipal, Luz, Agua, Gas, Tel. fijo, TV cable, sin excepción).</li>
-      <li>Garante: Fotocopia de impuesto o servicio actualizada, donde conste domicilio real (Impuesto Inmobiliario Provincial o Municipal, Luz, Agua, Gas, Tel. fijo, TV cable, sin excepción).</li>
-      <li>Fotocopia del último recibo de sueldo del garante con antigüedad mayor a 3 meses, donde no figuren ni embargos ni pago de cuota alimentaria, recibo de jubilación o certificado original de ingresos netos expedido por el Consejo Profesional de Ciencias Económicas.</li>
-    </ul>
-      
-    <div flex = 33>
-      <mat-card>
-      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" [disabled]="!form.valid">Generar Formulario de solicitud de crédito en PDF</button></p>
-      <p>El documento PDF descargado y la documentación mencionada deberá ingresarla en
-      <a href="https://fid.cba.gov.ar/ee-fid-multinota/multinota/#/form/FID/MNOTA_OTRO?reparticion=SEPE01">Mesa de entrada e-tramites </a></p>
+    <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>   
+    <mat-card>
+      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" [disabled]="!form.valid">Generar Formulario PDF</button></p>
     </mat-card>
-    </div>
-    <p>bancodelagente@cba.gov.ar</p> 
-
-    </div>
   </form>
   
- <pre>
+ <!--<pre>
     {{model | json}}
-  </pre>
+  </pre>-->
 </div> 
