@@ -5,14 +5,14 @@ import jsPDF from 'jspdf'
 
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 
 
 export class AppComponent {
-	title = 'FORMULARIO de Inscripción en el Registro Provincial de Capacitadores'
+  title = 'FORMULARIO de Inscripción en el Registro Provincial de Capacitadores'
   form = new FormGroup({})
   options: FormlyFormOptions = {};
   model: any = {
@@ -38,7 +38,7 @@ export class AppComponent {
           {
             key: 'Nombre del docente',
             type: 'input',
-            templateOptions:{
+            templateOptions: {
               label: 'Nombre del/la Docente-Capacitador/a:',
               required: true,
               placeholder: 'Ingrese el nombre completo del docente'
@@ -64,21 +64,20 @@ export class AppComponent {
           {
             key: 'DNI',
             type: 'input',
-            templateOptions:{
+            templateOptions: {
               label: 'DNI',
               pattern: '\\d{7,8}',
-              required: true,
               placeholder: 'Ingrese un DNI',
             }
           },
           {
-            key: 'CUIT',
+            key: 'CUIL',
             type: 'input',
-            templateOptions:{
-              label: 'CUIT',
+            templateOptions: {
+              label: 'CUIL',
               pattern: '\\d{11}',
               required: true,
-              placeholder: 'Ingrese un CUIT',
+              placeholder: 'Ingrese un CUIL',
             }
           },
           {
@@ -93,6 +92,7 @@ export class AppComponent {
             key: 'Fecha de nacimiento',
             type: 'input',
             templateOptions: {
+              required: true,
               type: 'date',
               placeholder: 'Ingrese una fecha de nacimiento',
               label: 'Fecha de nacimiento',
@@ -102,6 +102,7 @@ export class AppComponent {
             key: 'Nacionalidad',
             type: 'input',
             templateOptions: {
+              required: true,
               label: 'Nacionalidad',
               placeholder: 'Ingrese una nacionalidad'
             }
@@ -110,6 +111,7 @@ export class AppComponent {
             key: 'Domicilio',
             type: 'input',
             templateOptions: {
+              required: true,
               label: 'Domicilio',
               placeholder: 'Ingrese un domicilio'
             }
@@ -118,6 +120,7 @@ export class AppComponent {
             key: 'Correo electrónico personal',
             type: 'input',
             templateOptions: {
+              required: true,
               label: 'Correo electrónico personal',
               placeholder: 'Ingrese un correo electrónico'
             }
@@ -141,7 +144,8 @@ export class AppComponent {
           {
             key: 'Teléfono móvil',
             type: 'input',
-            templateOptions:{
+            templateOptions: {
+              required: true,
               label: 'Teléfono móvil',
               placeholder: 'Ingrese un teléfono móvil',
               pattern: '\\d{1,25}',
@@ -150,7 +154,7 @@ export class AppComponent {
           {
             key: 'Teléfono laboral',
             type: 'input',
-            templateOptions:{
+            templateOptions: {
               label: 'Teléfono laboral',
               placeholder: 'Ingrese un teléfono laboral',
               pattern: '\\d{1,25}',
@@ -159,7 +163,7 @@ export class AppComponent {
           {
             key: 'Teléfono alternativo',
             type: 'input',
-            templateOptions:{
+            templateOptions: {
               label: 'Teléfono alternativo',
               placeholder: 'Ingrese un teléfono alternativo',
               pattern: '\\d{1,25}',
@@ -169,16 +173,17 @@ export class AppComponent {
             key: 'Máximo nivel de estudio alcanzado',
             type: 'select',
             templateOptions: {
+              required: true,
               label: 'Máximo nivel de estudio alcanzado',
-              options:[
-                {value: 'Primario incompleto', label: 'Primario incompleto'},
-                {value: 'Primario completo', label: 'Primario completo'},
-                {value: 'Secundario incompleto', label: 'Secundario incompleto'},
-                {value: 'Secundario completo', label: 'Secundario completo'},
-                {value: 'Tercario incompleto', label: 'Terciario incompleto'},
-                {value: 'Terciario completo', label: 'Terciario completo'},
-                {value: 'Universitario incompleto', label: 'Universitario incompleto'},
-                {value: 'Universitario completo', label: 'Universitario completo'},
+              options: [
+                { value: 'Primario incompleto', label: 'Primario incompleto' },
+                { value: 'Primario completo', label: 'Primario completo' },
+                { value: 'Secundario incompleto', label: 'Secundario incompleto' },
+                { value: 'Secundario completo', label: 'Secundario completo' },
+                { value: 'Tercario incompleto', label: 'Terciario incompleto' },
+                { value: 'Terciario completo', label: 'Terciario completo' },
+                { value: 'Universitario incompleto', label: 'Universitario incompleto' },
+                { value: 'Universitario completo', label: 'Universitario completo' },
               ]
             }
           },
@@ -186,352 +191,484 @@ export class AppComponent {
       },
     },
 
- //--------------------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------------------
 
-  {
-    className: 'datos-estudios-cursados',
-    template: '<div><h2>Estudios Cursados</h2></div>',
-  },
-
-  {
-    key: 'Estudios Cursados',
-    type: 'repeat',
-    templateOptions: {
-      addText: 'Agregar Estudios Cursados',
+    {
+      className: 'datos-estudios-cursados',
+      template: '<div><h2>Estudios Cursados</h2></div>',
     },
-    fieldArray: {
-      fieldGroup: [
-        {
-          key: 'Nivel',
-          type: 'select',
-          templateOptions:{
-            label: 'Nivel',
-            options:[
-              {value: 'Nivel Medio', label: 'Nivel Medio'},
-              {value: 'Nivel Terciario', label: 'Nivel Terciario'},
-              {value: 'Nivel Universitario', label: 'Nivel Universitario'},
-              {value: 'Nivel Posgrado', label: 'Nivel Posgrado'},
-            ]
-          }
-        },
-            {
-              key: 'Institución',
-              type: 'input',
-              templateOptions:{
-                label: 'Institución',
-                placeholder: 'Ingrese una institución'
-              }
-            },
-            {
-              key: 'Localidad',
-              type: 'input',
-              templateOptions:{
-                label: 'Localidad',
-                placeholder: 'Ingrese una localidad'
-              }
-            },
-            {
-              key: 'Provincia',
-              type: 'input',
-              templateOptions:{
-                label: 'Provincia',
-                placeholder: 'Ingrese una provincia'
-              }
-            },
-            {
-              key: 'País',
-              type: 'input',
-              templateOptions:{
-                label: 'País',
-                placeholder: 'Ingrese un país'
-              }
-            },
-            {
-              key: 'Completo, año de egreso',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'Completo. Año de egreso',
-                placeholder: 'Ingrese un año'
-              }
-            },
-            {
-              key: 'Incompleto, años de cursado de',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'Incompleto. Años de cursado de:',
-                placeholder: 'Ingrese un año'
-              }
-            },
-            {
-              key: 'Incompleto, años de cursado a',
-              type: 'input',
-              templateOptions:{
-                pattern: '\\d{1,2}',
-                label: 'a:',
-                placeholder: 'Ingrese un año'
-              }
-            },
-            {
-              key: 'Titulo orientado a',
-              type: 'input',
-              templateOptions:{
-                label:'Titulo orientado a',
-                placeholder: 'Ingrese un titulo'
-              }
+
+    {
+      key: 'Estudios Cursados',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Agregar Estudios Cursados',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            key: 'Nivel',
+            type: 'select',
+            templateOptions: {
+              label: 'Nivel',
+              options: [
+                { value: 'Nivel Medio', label: 'Nivel Medio' },
+                { value: 'Nivel Terciario', label: 'Nivel Terciario' },
+                { value: 'Nivel Universitario', label: 'Nivel Universitario' },
+                { value: 'Nivel Posgrado', label: 'Nivel Posgrado' },
+              ]
             }
-      ]
-    }
-  },
-
-  //--------------------------------------------------------------------------------------------------------
-
-  {
-    className: 'datos-formacion-complementaria',
-    template: '<div><h2>Formación complementaria en la/s especialidad/es</h2></div>',
-  },
-  {
-    key: 'Formación complementaria en la/s especialidad/es',
-    type: 'repeat',
-    templateOptions: {
-      addText: 'Agregar formación complementaria',
-    },
-    fieldArray: {
-      fieldGroup: [
-        {
-          key: 'Nombre del curso',
-          type: 'input',
-          templateOptions:{
-            required: true,
-            label: 'Nombre del curso',
-            placeholder: 'Ingrese un nombre'
-          }
-        },
-        {
-          key: 'Carga horaria (reloj)',
-          type: 'input',
-          templateOptions: {
-            label: 'Cargar horaria (reloj)',
-            placeholder: 'Ingrese una carga horaria'
-          }
-        },
-        {
-          key: 'Certificación',
-          type: 'select',
-          templateOptions:{
-            label: 'Certificación',
-            options:[
-              {value: 'Oficial', label: 'Oficial'},
-              {value: 'No oficial', label: 'No oficial'}
-            ]
-          }
-        },
-        {
-          key: 'Intitución',
-          type: 'input',
-          templateOptions:{
-            label: 'Institución',
-            placeholder: 'Ingrese una institución',
-          }
-        },
-        {
-          key: 'Año',
-          type: 'input',
-          templateOptions:{
-            label: 'Año',
-            placeholder: 'Ingrese un año',
-            pattern: '\\d{1,4}'
-          }
-        }
-      ]
-    }
-  },
-  {
-    className: 'info-formacion-complementaria',
-    template: '<h3>Cursos, talleres de formación relacionados a los cursos/especialidades que se postula con una carga minima de 20 hs.</h3>'
-  },
-
-//-------------------------------------------------------------------------------------------------------
-
-{
-  className: 'datos-formacion-pedagogica-y-didactica',
-  template: '<div><h2>Formación pedagógica y didáctica</h2></div>',
-},
-{
-  key: 'Formación pedagógica y didáctica',
-  type: 'repeat',
-  templateOptions: {
-    addText: 'Agregar formación pedagógica y didáctica',
-  },
-  fieldArray: {
-    fieldGroup: [
-      {
-        key: 'Nombre del curso',
-        type: 'input',
-        templateOptions:{
-          required: true,
-          label: 'Nombre del curso',
-          placeholder: 'Ingrese un nombre'
-        }
-      },
-      {
-        key: 'Carga horaria (reloj)',
-        type: 'input',
-        templateOptions: {
-          label: 'Cargar horaria (reloj)',
-          placeholder: 'Ingrese una carga horaria'
-        }
-      },
-      {
-        key: 'Certificación',
-        type: 'select',
-        templateOptions:{
-          label: 'Certificación',
-          options:[
-            {value: 'Oficial', label: 'Oficial'},
-            {value: 'No oficial', label: 'No oficial'}
-          ]
-        }
-      },
-      {
-        key: 'Intitución',
-        type: 'input',
-        templateOptions:{
-          label: 'Institución',
-          placeholder: 'Ingrese una institución',
-        }
-      },
-      {
-        key: 'Año',
-        type: 'input',
-        templateOptions:{
-          label: 'Año',
-          placeholder: 'Ingrese un año',
-          pattern: '\\d{1,4}'
-        }
+          },
+          {
+            key: 'Institución',
+            type: 'input',
+            templateOptions: {
+              label: 'Institución',
+              placeholder: 'Ingrese una institución'
+            }
+          },
+          {
+            key: 'Localidad',
+            type: 'input',
+            templateOptions: {
+              label: 'Localidad',
+              placeholder: 'Ingrese una localidad'
+            }
+          },
+          {
+            key: 'Provincia',
+            type: 'input',
+            templateOptions: {
+              label: 'Provincia',
+              placeholder: 'Ingrese una provincia'
+            }
+          },
+          {
+            key: 'País',
+            type: 'input',
+            templateOptions: {
+              label: 'País',
+              placeholder: 'Ingrese un país'
+            }
+          },
+          {
+            key: 'Completo, año de egreso',
+            type: 'input',
+            templateOptions: {
+              pattern: '\\d{4}',
+              label: 'Completo. Año de egreso',
+              placeholder: 'Ingrese un año'
+            }
+          },
+          {
+            key: 'Incompleto desde',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'Incompleto desde:',
+              placeholder: 'Ingrese una fecha'
+            }
+          },
+          {
+            key: 'Incompleto hasta',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'hasta:',
+              placeholder: 'Ingrese una fecha'
+            }
+          },
+          {
+            key: 'Titulo orientado a',
+            type: 'input',
+            templateOptions: {
+              label: 'Titulo orientado a',
+              placeholder: 'Ingrese un titulo'
+            }
+          },
+          {
+            className: 'informacion-agregar',
+            template: '<div>El botón agregar es para habilitar un espacio más<p></div>',
+          },
+        ]
       }
-    ]
-  }
-},
-  //--------------------------------------------------------------------------------------------------------
-  {
-    className: 'datos-experiencia-docencia',
-    template: '<div><h2>Experiencia en el rol docente</h2></div>',
-  },
-  {
-    key: 'Experiencia en el rol docente',
-    type: 'repeat',
-    templateOptions: {
-      addText: 'Agregar experiencia en el rol docente',
     },
-    fieldArray: {
-      fieldGroup: [
-        {
-          key: 'Institución, organización o empresa',
-          type: 'input',
-          templateOptions:{
-            required: true,
-            label: 'Institución, organización o empresa',
-            placeholder: 'Ingrese una institución, organización o empresa'
-          }
-        },
-        {
-          key: 'Especialidad o curso desarrollado',
-          type: 'input',
-          templateOptions: {
-            label: 'Especialidad o curso desarrollado',
-            placeholder: 'Ingrese una especialidad o un curso desarrollado'
-          }
-        },
-        {
-          key: 'Rol docente',
-          type: 'select',
-          templateOptions:{
-            label: 'Rol docente',
-            options:[
-              {value: 'A cargo de la capacitación', label: 'A cargo de la capacitación'},
-              {value: 'Auxiliar', label: 'Auxiliar'}
-            ]
-          }
-        },
-        {
-          key: 'Fecha desde',
-          type: 'input',
-          templateOptions:{
-            type: 'date',
-            label: 'Fecha desde',
-            placeholder: 'Ingrese una fecha',
-          }
-        },
-        {
-          key: 'Fecha hasta',
-          type: 'input',
-          templateOptions:{
-            type: 'date',
-            label: 'Fecha hasta',
-            placeholder: 'Ingrese una fecha',
-          }
-        }
-      ]
-    }
-  },
-//--------------------------------------------------------------------------------------------------------
-{
-  className: 'datos-experiencia-sector-socio-productivo',
-  template: '<div><h2>Experiencia laboral en el sector socio productivo</h2></div>',
-},
-{
-  key: 'Experiencia laboral en el sector socio productivo',
-  type: 'repeat',
-  templateOptions: {
-    addText: 'Agregar experiencia laboral en el sector socio productivo',
-  },
-  fieldArray: {
-    fieldGroup: [
-      {
-        key: 'Institución, organización o empresa',
-        type: 'input',
-        templateOptions:{
-          required: true,
-          label: 'Institución, organización o empresa',
-          placeholder: 'Ingrese una institución, organización o empresa'
-        }
+
+    //--------------------------------------------------------------------------------------------------------
+
+    {
+      className: 'datos-formacion-complementaria',
+      template: '<div><h2>Formación complementaria en la/s especialidad/es</h2></div>',
+    },
+    {
+      key: 'Formación complementaria en la/s especialidad/es',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Agregar formación complementaria',
       },
-      {
-        key: 'Cargo',
-        type: 'input',
-        templateOptions: {
-          label: 'Cargo',
-          placeholder: 'Ingrese un cargo'
-        }
-      },
-      {
-        key: 'Funciónes principales',
-        type: 'input',
-        templateOptions:{
-          label: 'Funciónes principales',
-          placeholder: 'Ingrese una función principal'
-        }
-      },
-      {
-        key: 'Período desde',
-        type: 'input',
-        templateOptions:{
-          type: 'date',
-          label: 'Fecha desde',
-          placeholder: 'Ingrese una fecha',
-        }
-      },
-      {
-        key: 'Período hasta',
-        type: 'input',
-        templateOptions:{
-          type: 'date',
-          label: 'Período hasta',
-          placeholder: 'Ingrese una fecha',
-        }
+      fieldArray: {
+        fieldGroup: [
+          {
+            className: 'info-formacion-complementaria',
+            template: '<h3>Cursos, talleres de formación relacionados a los cursos/especialidades que se postula con una carga <b>minima de 20 hs.</b></h3>'
+          },
+          {
+            className: 'info-adjuntar',
+            template: '<h3>Si en el certificado no acredita la carga horaria, adjuntar analitico, módulos, ejes con carga horaria que de cuenta.</h3>'
+          },
+          {
+            key: 'Nombre del curso',
+            type: 'input',
+            templateOptions: {
+              required: true,
+              label: 'Nombre del curso',
+              placeholder: 'Ingrese un nombre'
+            }
+          },
+          {
+            key: 'Carga horaria (reloj)',
+            type: 'input',
+            templateOptions: {
+              label: 'Cargar horaria (reloj)',
+              placeholder: 'Ingrese una carga horaria'
+            }
+          },
+          {
+            key: 'Certificación',
+            type: 'select',
+            templateOptions: {
+              label: 'Certificación',
+              options: [
+                { value: 'Oficial', label: 'Oficial' },
+                { value: 'No oficial', label: 'No oficial' }
+              ]
+            }
+          },
+          {
+            key: 'Intitución',
+            type: 'input',
+            templateOptions: {
+              label: 'Institución',
+              placeholder: 'Ingrese una institución',
+            }
+          },
+          {
+            key: 'Año',
+            type: 'input',
+            templateOptions: {
+              label: 'Año',
+              placeholder: 'Ingrese un año',
+              pattern: '\\d{4}'
+            }
+          },
+        ]
       }
+    },
+    
+
+    //-------------------------------------------------------------------------------------------------------
+
+    {
+      className: 'datos-formacion-pedagogica-y-didactica',
+      template: '<div><h2>Formación pedagógica y didáctica</h2></div>',
+    },
+    {
+      key: 'Formación pedagógica y didáctica',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Agregar formación pedagógica y didáctica',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            key: 'Nombre del curso',
+            type: 'input',
+            templateOptions: {
+              required: true,
+              label: 'Nombre del curso',
+              placeholder: 'Ingrese un nombre'
+            }
+          },
+          {
+            key: 'Carga horaria (reloj)',
+            type: 'input',
+            templateOptions: {
+              label: 'Cargar horaria (reloj)',
+              placeholder: 'Ingrese una carga horaria'
+            }
+          },
+          {
+            key: 'Certificación',
+            type: 'select',
+            templateOptions: {
+              label: 'Certificación',
+              options: [
+                { value: 'Oficial', label: 'Oficial' },
+                { value: 'No oficial', label: 'No oficial' }
+              ]
+            }
+          },
+          {
+            key: 'Intitución',
+            type: 'input',
+            templateOptions: {
+              label: 'Institución',
+              placeholder: 'Ingrese una institución',
+            }
+          },
+          {
+            key: 'Año',
+            type: 'input',
+            templateOptions: {
+              label: 'Año',
+              placeholder: 'Ingrese un año',
+              pattern: '\\d{4}'
+            }
+          }
+        ]
+      }
+    },
+    //--------------------------------------------------------------------------------------------------------
+    {
+      className: 'datos-experiencia-docencia',
+      template: '<div><h2>Experiencia en el rol docente</h2></div>',
+    },
+    {
+      key: 'Experiencia en el rol docente',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Agregar experiencia en el rol docente',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            key: 'Institución, organización o empresa',
+            type: 'input',
+            templateOptions: {
+              required: true,
+              label: 'Institución, organización o empresa',
+              placeholder: 'Ingrese una institución, organización o empresa'
+            }
+          },
+          {
+            key: 'Especialidad o curso desarrollado',
+            type: 'input',
+            templateOptions: {
+              label: 'Especialidad o curso desarrollado',
+              placeholder: 'Ingrese una especialidad o un curso desarrollado'
+            }
+          },
+          {
+            key: 'Rol docente',
+            type: 'select',
+            templateOptions: {
+              label: 'Rol docente',
+              options: [
+                { value: 'A cargo de la capacitación', label: 'A cargo de la capacitación' },
+                { value: 'Auxiliar', label: 'Auxiliar' }
+              ]
+            }
+          },
+          {
+            key: 'Fecha desde',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'Fecha desde',
+              placeholder: 'Ingrese una fecha',
+            }
+          },
+          {
+            key: 'Fecha hasta',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'Fecha hasta',
+              placeholder: 'Ingrese una fecha',
+            }
+          }
+        ]
+      }
+    },
+    //--------------------------------------------------------------------------------------------------------
+    {
+      className: 'datos-experiencia-sector-socio-productivo',
+      template: '<div><h2>Experiencia laboral en el sector socio productivo</h2></div>',
+    },
+    {
+      key: 'Experiencia laboral en el sector socio productivo',
+      type: 'repeat',
+      templateOptions: {
+        addText: 'Agregar experiencia laboral en el sector socio productivo',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            key: 'Institución, organización o empresa',
+            type: 'input',
+            templateOptions: {
+              required: true,
+              label: 'Institución, organización o empresa',
+              placeholder: 'Ingrese una institución, organización o empresa'
+            }
+          },
+          {
+            key: 'Cargo',
+            type: 'input',
+            templateOptions: {
+              label: 'Cargo',
+              placeholder: 'Ingrese un cargo'
+            }
+          },
+          {
+            key: 'Funciónes principales',
+            type: 'input',
+            templateOptions: {
+              label: 'Funciónes principales',
+              placeholder: 'Ingrese una función principal'
+            }
+          },
+          {
+            key: 'Período desde',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'Fecha desde',
+              placeholder: 'Ingrese una fecha',
+            }
+          },
+          {
+            key: 'Período hasta',
+            type: 'input',
+            templateOptions: {
+              type: 'date',
+              label: 'Período hasta',
+              placeholder: 'Ingrese una fecha',
+            }
+          }
+        ]
+      }
+    },
+    //--------------------------------------------------------------------------------------------------------
+    {
+      className: 'datos-nivel-digital',
+      template: '<div><h2>Nivel de conocimiento en herramientas digitales</h2></div>',
+    },
+    {
+      key: 'Tabla nivel de conocimiento en herramientas digitales',
+      type: 'no repeat',
+      templateOptions: {
+        addText: 'Insertar tabla',
+      },
+      fieldArray: {
+        fieldGroup: [
+          {
+            key: 'Uso de correo electrónico',
+            type: 'select',
+            templateOptions: {
+              label: 'Uso de correo electrónico',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Manejo de Drive',
+            type: 'select',
+            templateOptions: {
+              label: 'Manejo de Drive',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Utilización de aulas virtuales',
+            type: 'select',
+            templateOptions: {
+              label: 'Utilización de aulas virtuales',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Word',
+            type: 'select',
+            templateOptions: {
+              label: 'Word',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Excel',
+            type: 'select',
+            templateOptions: {
+              label: 'Excel',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Power Point',
+            type: 'select',
+            templateOptions: {
+              label: 'Power Point',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Programas de diseño',
+            type: 'select',
+            templateOptions: {
+              label: 'Programas de diseño',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+          {
+            key: 'Plataformas de Videoconferencia',
+            type: 'select',
+            templateOptions: {
+              label: 'Plataformas de Videoconferencia',
+              options: [
+                { value: 'Básico', label: 'Básico' },
+                { value: 'Medio', label: 'Medio' },
+                { value: 'Alto', label: 'Alto' },
+                { value: 'Avanzado', label: 'Avanzado' },
+              ]
+            }
+          },
+        ]
+      }
+<<<<<<< HEAD
     ]
   }
 },
@@ -545,197 +682,90 @@ export class AppComponent {
     type: 'no repeat',
     templateOptions:{
       addText: 'Agregar niveles',
+=======
+>>>>>>> 2c4abdc15951c6103f6e9cf088610accceeebb11
     },
-    fieldArray:{
-      fieldGroup:[
-        {
-          key: 'Uso de correo electrónico',
-          type: 'select',
-          templateOptions:{
-            label: 'Uso de correo electrónico',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
+    //--------------------------------------------------------------------------------------------------------
+  ]
+
+
+
+  createPdf() {
+
+    if (this.form.valid) {
+      let modelo = Object.entries(this.model);
+      //
+      var doc = new jsPDF('p', 'mm', 'a4');
+
+
+      doc.setFont('helvetica')
+
+      let m = 5;
+      let y = 0;
+      let x = 15;
+      let i = 0; //
+      //var arr:JSON[];
+
+      for (let seccion of modelo) {
+
+        let arr: any = seccion[1];
+
+        y = y + 6;
+        doc.setFontSize(16);
+        doc.setTextColor(45);
+        doc.text(seccion[0], x, m + y); //nombre seccion
+        doc.line(x, m + y + 1, x + 180, m + y + 1);
+
+
+
+        for (var j = 0; j < arr.length; j++) {
+
+          //console.log(reg);
+          var res = [];
+          var z = 0;
+          for (var clave in arr[j]) {
+            if (y > 240 && x === 110) {
+              doc.addPage();
+              m = 5;
+              y = 0;
+              x = 15;
+            }
+            i++;
+            if (i % 2 != 0) { x = 15; y = y + 12; }
+            else { x = 110; }
+            doc.setFontSize(10);
+            doc.setDrawColor(100);
+
+            res.push([clave, arr[j][clave]]);
+            var registro: String[] = [clave, 'algo quee no se paso a string'];
+            try {
+              registro = res[z]; //paso los valores a string
+            } catch (e) {
+              console.log(e)
+            }
+            z++;
+            doc.text(registro[1], x, m + y); //valor
+            doc.line(x, m + y + 1, x + 90, m + y + 1); // linea horizontal
+            doc.setFontSize(8);
+            doc.setDrawColor(60);
+            doc.text(clave, x, m + y + 5); //key
           }
-        },
-        {
-          key: 'Manejo de Drive',
-          type: 'select',
-          templateOptions:{
-            label: 'Manejo de Drive',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Utilización de aulas virtuales',
-          type: 'select',
-          templateOptions:{
-            label: 'Utilización de aulas virtuales',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Word',
-          type: 'select',
-          templateOptions:{
-            label: 'Word',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Excel',
-          type: 'select',
-          templateOptions:{
-            label: 'Excel',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Power Point',
-          type: 'select',
-          templateOptions:{
-            label: 'Power Point',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Programas de diseño',
-          type: 'select',
-          templateOptions:{
-            label: 'Programas de diseño',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-        {
-          key: 'Plataformas de Videoconferencia',
-          type: 'select',
-          templateOptions:{
-            label: 'Plataformas de Videoconferencia',
-            options:[
-              {value: 'Básico', label: 'Básico'},
-              {value: 'Medio', label: 'Medio'},
-              {value: 'Alto', label: 'Alto'},
-              {value: 'Avanzado', label: 'Avanzado'},
-            ]
-          }
-        },
-      ]
-    }
-  },
-//--------------------------------------------------------------------------------------------------------
-]
-
-  
-
-	createPdf() {
-
-  if (this.form.valid) {
-    let modelo = Object.entries(this.model);
-    //
-    var doc = new jsPDF('p','mm','a4');
-    
-
-    doc.setFont('helvetica')
-
-    let m = 5;
-    let y = 0;
-    let x = 15;
-    let i = 0; //
-    //var arr:JSON[];
-
-    for (let seccion of modelo) {
-
-      let arr: any = seccion[1];
-
-      y = y + 6;
-      doc.setFontSize(16);
-      doc.setTextColor(45);
-      doc.text(seccion[0], x, m + y); //nombre seccion
-      doc.line(x, m + y + 1, x + 180, m + y + 1);
-
-
-
-      for(var j = 0; j < arr.length;j++){
-        
-        //console.log(reg);
-        var res = [];
-        var z = 0;
-        for(var clave in arr[j]){
-          if (y > 240 && x === 110) {
-            doc.addPage();
-            m = 5;
-            y = 0;
-            x = 15;
-          }
-          i++;
-          if (i % 2 != 0){x = 15; y = y + 12;}
-          else {x = 110;}
-          doc.setFontSize(10);
-          doc.setDrawColor(100);
-
-          res.push([clave, arr[j][clave]]);
-          var registro:String[] = [clave, 'algo quee no se paso a string'];
-          try {
-            registro = res[z]; //paso los valores a string
-          } catch (e) {
-            console.log(e)
-          }
-          z++;
-          doc.text(registro[1], x, m+y); //valor
-          doc.line(x, m + y + 1, x + 90, m + y + 1); // linea horizontal
-          doc.setFontSize(8);
-          doc.setDrawColor(60);
-          doc.text(clave, x, m + y + 5); //key
         }
+        i = 0;
+        x = 15;
+        y = y + 12;
       }
-      i = 0;
-      x = 15;
-      y = y + 12;
-    }
-    let nombreArchivo = '00000000000';
-    nombreArchivo = this.model['Datos personales'][0]['CUIT'];
+      let nombreArchivo = '00000000000';
+      nombreArchivo = this.model['Datos personales'][0]['CUIL'];
       doc.output('dataurlnewwindow');
       doc.save('InscripcionCapacitador' + nombreArchivo + '.pdf');
 
 
     } else (error) => {
-        console.error('error:', error);
-      } 
-      if (this.form.invalid) {
-        alert("falta completar datos")
-      }
+      console.error('error:', error);
+    }
+    if (this.form.invalid) {
+      alert("falta completar datos")
+    }
   }
 }
