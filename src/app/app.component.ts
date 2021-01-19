@@ -57,7 +57,7 @@ export class AppComponent {
             key: 'Nombres',
             type: 'input',
             templateOptions: {
-              label: 'Nombres (Ley de Identidad de Género 26.743 art.12)',
+              label: 'Completar Nombre como se autopercibe según ley de identidad de Género 26.743 art. 12',
               placeholder: 'Ingrese uno o varios nombres',
             },
           },
@@ -504,6 +504,31 @@ export class AppComponent {
       fieldArray: {
         fieldGroup: [
           {
+            key: 'Experiencia como docente',
+            type: 'select',
+            templateOptions: {
+              required: false,
+              multiple: true,
+              label: 'Experiencia en el sector/es que se postula como docente',
+              options: [
+                { value:'ADMINISTRACION Y COMERCIO', label:'ADMINISTRACION Y COMERCIO'},
+                { value:'AGROPECUARIO, AGROINDUSTRIA Y ACTIVIDADES EXTRACTIVAS', label:'AGROPECUARIO, AGROINDUSTRIA Y ACTIVIDADES EXTRACTIVAS'},
+                { value:'AUTOMOTOR', label:'AUTOMOTOR'},
+                { value:'COMUNICACION', label:'COMUNICACION'},
+                { value:'CONSTRUCCION', label:'CONSTRUCCION'},
+                { value:'CUERO Y CALZADO', label:'CUERO Y CALZADO'},
+                { value:'ENERGIA ELECTRICA', label:'ENERGIA ELECTRICA'},
+                { value:'GASTRONOMIA, HOTELERIA Y TURISMO', label:'GASTRONOMIA, HOTELERIA Y TURISMO'},
+                { value:'INFORMATICA', label:'INFORMATICA'},
+                { value:'MADERA Y MUEBLE', label:'MADERA Y MUEBLE'},
+                { value:'METALMECANICA', label:'METALMECANICA'},
+                { value:'SERVICIOS PERSONALES Y COMUNITARIOS', label:'SERVICIOS PERSONALES Y COMUNITARIOS'},
+                { value:'TEXTIL', label:'TEXTIL'},
+
+              ]
+            }
+          },
+          {
             key: 'Institución, organización o empresa',
             type: 'input',
             templateOptions: {
@@ -545,7 +570,16 @@ export class AppComponent {
               label: 'Período hasta',
               placeholder: 'Ingrese una fecha',
             }
-          }
+          },
+          {
+            key: 'Convocado por Institución, organización o empresa',
+            type: 'input',
+            templateOptions: {
+              required: false,
+              label: 'En caso de estar convocado actualmente por alguna institución para el dictado de cursos, menciónela',
+              placeholder: 'Ingrese una institución, organización o empresa'
+            }
+          },
         ]
       }
     },
