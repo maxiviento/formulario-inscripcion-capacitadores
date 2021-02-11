@@ -1251,13 +1251,17 @@ export class AppComponent {
               console.log(e)
             }
             z++;
+            let texto = ''
             //RESUELVO SI EL TEXTO ES LARGO O CORTO O SI ES DE UNA COLUMNA U OTRA
-            console.log(registro[1]);
-            console.log(registro[1].length);
-            if (registro[1].constructor.name == "Array") {
-              console.log('fue un array');
-          }
-            if (registro[1].length > 40) {x = 15; y = y + 12; i++; ll=180}
+            texto = registro[1].toString();
+            texto = doc.splitTextToSize(texto, 180);
+
+            console.log(texto);
+            console.log(texto.length);
+
+            
+            
+            if (texto.length > 40) {x = 15; y = y + 12; i++; ll=180}
             else { if (i % 2 != 0 || ll==180 ) { x = 15; y = y + 12; ll=90 }
                   else { x = 110; ll=90 } }
             //ACA PREGUNTO SI ESTOY SALIENDOME DE LA HOJA
@@ -1271,7 +1275,10 @@ export class AppComponent {
             
             doc.setFontSize(10);
             doc.setDrawColor(100);
-            doc.text(registro[1], x, m + y); //valor
+            for (var ia = 0; ia < texto.length; ia++) {                
+              doc.text(texto[ia], x, m + y); //valor
+              y = y + 12;
+            }
             doc.line(x, m + y + 1, x + ll, m + y + 1); // linea horizontal
             doc.setFontSize(8);
             doc.setDrawColor(60);
