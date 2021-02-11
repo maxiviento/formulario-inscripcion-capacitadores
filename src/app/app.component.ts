@@ -1181,6 +1181,7 @@ export class AppComponent {
             key: 'CURSO',
             type: 'select',
             templateOptions: {
+              multiple: true,
               label: 'CURSO',
               options: [],
               valueProp: 'id',
@@ -1201,7 +1202,7 @@ export class AppComponent {
 
   createPdf() {
 
-    if (this.form.valid) {
+    if (this.form.invalid) {
       let modelo = Object.entries(this.model);
       //
       var doc = new jsPDF('p', 'mm', 'a4');
@@ -1251,6 +1252,11 @@ export class AppComponent {
             }
             z++;
             //RESUELVO SI EL TEXTO ES LARGO O CORTO O SI ES DE UNA COLUMNA U OTRA
+            console.log(registro[1]);
+            console.log(registro[1].length);
+            if (registro[1].constructor.name == "Array") {
+              console.log('fue un array');
+          }
             if (registro[1].length > 40) {x = 15; y = y + 12; i++; ll=180}
             else { if (i % 2 != 0 || ll==180 ) { x = 15; y = y + 12; ll=90 }
                   else { x = 110; ll=90 } }
@@ -1285,8 +1291,8 @@ export class AppComponent {
     } else (error) => {
       console.error('error:', error);
     }
-    if (this.form.invalid) {
-      alert("Algunos datos obligatorios son necesarios")
-    }
+    //if (this.form.invalid) {
+    //  alert("Algunos datos obligatorios son necesarios")
+    //}
   }
 }

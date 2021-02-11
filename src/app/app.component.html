@@ -4,7 +4,9 @@
   <form [formGroup]="form" >
     <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>   
     <mat-card>
-      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" [disabled]="!form.valid">Generar Formulario PDF</button></p>
+      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" >Generar Formulario PDF</button></p>
+
+<!--      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" [disabled]="!form.valid">Generar Formulario PDF</button></p>-->
     </mat-card>
   </form>
   
