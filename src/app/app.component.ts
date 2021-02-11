@@ -1123,13 +1123,13 @@ export class AppComponent {
     //--------------------------------------------------------------------------------------------------------
 
     {
-      template: '<h3>Cursos</h3>'
+      template: '<div><h2>Certificación a la que se postula</h2></div>'
     },
     {
-      key: 'Cursos',
+      key: 'Certificación a la que se postula',
       type: 'repeat',
       templateOptions: {
-        addText: 'Agregar curso',
+        addText: 'Agregar certificación a la que se postula',
         required: true
       },
       fieldArray:{
@@ -1266,7 +1266,7 @@ export class AppComponent {
             var texto_aux = ""
             for(var jj = 0; jj < text_arr_aux.length; jj++){
               texto_aux = texto_aux + text_arr_aux[jj]
-              if(jj%115==0 && jj != 0){
+              if(jj%88==0 && jj != 0){
                 text_arr.push(texto_aux)
                 texto_aux = ""
               }
