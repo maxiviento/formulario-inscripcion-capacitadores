@@ -1190,7 +1190,7 @@ export class AppComponent {
             expressionProperties: {
               'templateOptions.options': 'formState.selectOptionsData.CURSOS.filter(CURSOS => CURSOS.idTrayecto === model.TRAYECTO)',
               // reset model when updating select options
-              'model.CURSO': `field.templateOptions.options.find(o => o.id === model.CURSO) ? model.CURSO:null`,
+              //'model.CURSO': `field.templateOptions.options.find(o => o.id === model.CURSO) ? model.CURSO:null`,
             },
           },
         ]
@@ -1251,14 +1251,28 @@ export class AppComponent {
               console.log(e)
             }
             z++;
-            let texto = ''
+            var texto = ''
             //RESUELVO SI EL TEXTO ES LARGO O CORTO O SI ES DE UNA COLUMNA U OTRA
-            texto = registro[1].toString();
-            texto = doc.splitTextToSize(texto, 180);
+            //console.log(registro[1])
+            texto = registro[1].toString()
 
-            console.log(texto);
-            console.log(texto.length);
-
+            var text_arr_aux = new Array
+            text_arr_aux = []
+            text_arr_aux = texto.split("",texto.length)
+            console.log(texto)
+            console.log(text_arr_aux)
+            var text_arr = new Array
+            text_arr = []
+            var texto_aux = ""
+            for(var jj = 0; jj < text_arr_aux.length; jj++){
+              texto_aux = texto_aux + text_arr_aux[jj]
+              if(jj%115==0 && jj != 0){
+                text_arr.push(texto_aux)
+                texto_aux = ""
+              }
+            }
+            text_arr.push(texto_aux)
+            console.log(texto_aux)
             
             
             if (texto.length > 40) {x = 15; y = y + 12; i++; ll=180}
@@ -1275,10 +1289,12 @@ export class AppComponent {
             
             doc.setFontSize(10);
             doc.setDrawColor(100);
-            for (var ia = 0; ia < texto.length; ia++) {                
-              doc.text(texto[ia], x, m + y); //valor
-              y = y + 12;
+            for (var ia = 0; ia < text_arr.length; ia++) {                
+              doc.text(text_arr[ia], x, m + y); //valor
+              y = y + 5             
             }
+            y = y - 5
+            
             doc.line(x, m + y + 1, x + ll, m + y + 1); // linea horizontal
             doc.setFontSize(8);
             doc.setDrawColor(60);
