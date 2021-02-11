@@ -1181,6 +1181,7 @@ export class AppComponent {
             key: 'CURSO',
             type: 'select',
             templateOptions: {
+              multiple: true,
               label: 'CURSO',
               options: [],
               valueProp: 'id',
@@ -1201,7 +1202,7 @@ export class AppComponent {
 
   createPdf() {
 
-    if (this.form.valid) {
+    if (this.form.invalid) {
       let modelo = Object.entries(this.model);
       //
       var doc = new jsPDF('p', 'mm', 'a4');
@@ -1215,11 +1216,19 @@ export class AppComponent {
       let y = 5;
       let x = 15;
       let i = 0; //
+      let ll = 90;
       //var arr:JSON[];
 
       for (let seccion of modelo) {
 
         let arr: any = seccion[1];
+        if (y > 240 ) {
+          doc.addPage();
+          doc.addImage(img, 'jpg', 0, 0);
+          m = 30;
+          y = 5;
+          x = 15;
+        }
 
         y = y + 6;
         doc.setFontSize(16);
@@ -1227,27 +1236,13 @@ export class AppComponent {
         doc.text(seccion[0], x, m + y); //nombre seccion
         doc.line(x, m + y + 1, x + 180, m + y + 1);
 
-
-
         for (var j = 0; j < arr.length; j++) {
 
           //console.log(reg);
           var res = [];
           var z = 0;
           for (var clave in arr[j]) {
-            if (y > 240 && x === 110) {
-              doc.addPage();
-              doc.addImage(img, 'jpg', 0, 0);
-              m = 30;
-              y = 5;
-              x = 15;
-            }
             i++;
-            if (i % 2 != 0) { x = 15; y = y + 12; }
-            else { x = 110; }
-            doc.setFontSize(10);
-            doc.setDrawColor(100);
-
             res.push([clave, arr[j][clave]]);
             var registro: String[] = [clave, 'algo quee no se paso a string'];
             try {
@@ -1256,8 +1251,35 @@ export class AppComponent {
               console.log(e)
             }
             z++;
-            doc.text(registro[1], x, m + y); //valor
-            doc.line(x, m + y + 1, x + 90, m + y + 1); // linea horizontal
+            let texto = ''
+            //RESUELVO SI EL TEXTO ES LARGO O CORTO O SI ES DE UNA COLUMNA U OTRA
+            texto = registro[1].toString();
+            texto = doc.splitTextToSize(texto, 180);
+
+            console.log(texto);
+            console.log(texto.length);
+
+            
+            
+            if (texto.length > 40) {x = 15; y = y + 12; i++; ll=180}
+            else { if (i % 2 != 0 || ll==180 ) { x = 15; y = y + 12; ll=90 }
+                  else { x = 110; ll=90 } }
+            //ACA PREGUNTO SI ESTOY SALIENDOME DE LA HOJA
+            if (y > 240) {
+              doc.addPage();
+              doc.addImage(img, 'jpg', 0, 0);
+              m = 30;
+              y = 5;
+              x = 15;
+            }
+            
+            doc.setFontSize(10);
+            doc.setDrawColor(100);
+            for (var ia = 0; ia < texto.length; ia++) {                
+              doc.text(texto[ia], x, m + y); //valor
+              y = y + 12;
+            }
+            doc.line(x, m + y + 1, x + ll, m + y + 1); // linea horizontal
             doc.setFontSize(8);
             doc.setDrawColor(60);
             doc.text(clave, x, m + y + 5); //key
@@ -1276,8 +1298,8 @@ export class AppComponent {
     } else (error) => {
       console.error('error:', error);
     }
-    if (this.form.invalid) {
-      alert("falta completar datos")
-    }
+    //if (this.form.invalid) {
+    //  alert("Algunos datos obligatorios son necesarios")
+    //}
   }
 }
