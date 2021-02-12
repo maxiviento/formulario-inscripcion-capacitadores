@@ -1123,13 +1123,13 @@ export class AppComponent {
     //--------------------------------------------------------------------------------------------------------
 
     {
-      template: '<h3>Cursos</h3>'
+      template: '<div><h2>Certificación a la que se postula</h2></div>'
     },
     {
-      key: 'Cursos',
+      key: 'Certificación a la que se postula',
       type: 'repeat',
       templateOptions: {
-        addText: 'Agregar curso',
+        addText: 'Agregar certificación a la que se postula',
         required: true
       },
       fieldArray:{
@@ -1190,7 +1190,7 @@ export class AppComponent {
             expressionProperties: {
               'templateOptions.options': 'formState.selectOptionsData.CURSOS.filter(CURSOS => CURSOS.idTrayecto === model.TRAYECTO)',
               // reset model when updating select options
-              'model.CURSO': `field.templateOptions.options.find(o => o.id === model.CURSO) ? model.CURSO:null`,
+              //'model.CURSO': `field.templateOptions.options.find(o => o.id === model.CURSO) ? model.CURSO:null`,
             },
           },
         ]
@@ -1251,13 +1251,31 @@ export class AppComponent {
               console.log(e)
             }
             z++;
+            var texto = ''
             //RESUELVO SI EL TEXTO ES LARGO O CORTO O SI ES DE UNA COLUMNA U OTRA
-            console.log(registro[1]);
-            console.log(registro[1].length);
-            if (registro[1].constructor.name == "Array") {
-              console.log('fue un array');
-          }
-            if (registro[1].length > 40) {x = 15; y = y + 12; i++; ll=180}
+            //console.log(registro[1])
+            texto = registro[1].toString()
+
+            var text_arr_aux = new Array
+            text_arr_aux = []
+            text_arr_aux = texto.split("",texto.length)
+            console.log(texto)
+            console.log(text_arr_aux)
+            var text_arr = new Array
+            text_arr = []
+            var texto_aux = ""
+            for(var jj = 0; jj < text_arr_aux.length; jj++){
+              texto_aux = texto_aux + text_arr_aux[jj]
+              if(jj%88==0 && jj != 0){
+                text_arr.push(texto_aux)
+                texto_aux = ""
+              }
+            }
+            text_arr.push(texto_aux)
+            console.log(texto_aux)
+            
+            
+            if (texto.length > 40) {x = 15; y = y + 12; i++; ll=180}
             else { if (i % 2 != 0 || ll==180 ) { x = 15; y = y + 12; ll=90 }
                   else { x = 110; ll=90 } }
             //ACA PREGUNTO SI ESTOY SALIENDOME DE LA HOJA
@@ -1271,7 +1289,12 @@ export class AppComponent {
             
             doc.setFontSize(10);
             doc.setDrawColor(100);
-            doc.text(registro[1], x, m + y); //valor
+            for (var ia = 0; ia < text_arr.length; ia++) {                
+              doc.text(text_arr[ia], x, m + y); //valor
+              y = y + 5             
+            }
+            y = y - 5
+            
             doc.line(x, m + y + 1, x + ll, m + y + 1); // linea horizontal
             doc.setFontSize(8);
             doc.setDrawColor(60);
