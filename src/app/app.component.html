@@ -1,15 +1,26 @@
 <div flex = 33 id="container">
-  <h1>{{ title }}</h1>
+  <h1>Usted deberá tener en cuenta y saber</h1>
+ <ul> 
+  <li>El formulario como la documentación adjunta debe estar completo para poder evaluar la solicitud.</li>
+  <li>Informar, detallar solo lo que es afín al Curso al que se postula, con la Carga Horaria especificada en Certificado
+    y/o Constancia adjunta.
+  </li>
+  <li> Presentar cada certificado con su respectiva carga horaria, en caso de no estar especificada en el mismo, requerir
+    constancia en el lugar donde realizó la formación.
+  </li>
+  <li> Todo lo que se declare debe estar respaldado con documentación perfectamente certificada.
+  </li>
+  <li> Los datos que usted ingrese en el Formulario revisten carácter de Declaración Jurada.</li>
+</ul>
 
   <form [formGroup]="form" >
     <formly-form [form]="form" [fields]="fields" [model]="model" [options]="options"></formly-form>   
-    <mat-card>
-      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" >Generar Formulario PDF</button></p>
-
-<!--      <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" [disabled]="!form.valid">Generar Formulario PDF</button></p>-->
-    </mat-card>
-  </form>
+    
   
+<mat-card>
+  <p><button type="button" mat-raised-button color="primary" (click)="createPdf()" >Generar Formulario PDF</button></p>
+</mat-card>
+  </form>
  <!--<pre>
     {{model | json}}
   </pre>-->

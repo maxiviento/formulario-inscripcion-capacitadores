@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import jsPDF from 'jspdf'
+import { validateRequired } from './app.module'
 
 
 @Component({
@@ -446,8 +447,9 @@ export class AppComponent {
       type: 'no repeat',
       templateOptions: {
         addText: 'Ingresar datos personales',
-        required: true,
       },
+      
+      
       fieldArray: {
         fieldGroup: [
           {
@@ -457,7 +459,8 @@ export class AppComponent {
               label: 'Nombre del/la Docente-Capacitador/a:',
               required: true,
               placeholder: 'Ingrese el nombre completo del docente'
-            }
+            },
+            
           },
           {
             key: 'Apellido',
@@ -493,7 +496,10 @@ export class AppComponent {
               pattern: '\\d{11}',
               required: true,
               placeholder: 'Ingrese un CUIL',
-            }
+            },
+            validation: {
+              show: true,
+            },
           },
           {
             key: 'Lugar de nacimiento',
@@ -1202,7 +1208,7 @@ export class AppComponent {
 
   createPdf() {
 
-    if (this.form.invalid) {
+    if (this.form.valid) {
       let modelo = Object.entries(this.model);
       //
       var doc = new jsPDF('p', 'mm', 'a4');
@@ -1314,8 +1320,8 @@ export class AppComponent {
     } else (error) => {
       console.error('error:', error);
     }
-    //if (this.form.invalid) {
-    //  alert("Algunos datos obligatorios son necesarios")
-    //}
+    if (this.form.invalid) {
+      alert("Algunos datos obligatorios son necesarios");
+    }
   }
 }
