@@ -29,6 +29,8 @@ import { RepeatTypeComponent } from './formly-types/repeat-type.formly.component
 import { NoRepeatTypeComponent } from './formly-types/no-repeat-type.formly.component'
 import { FormlyFieldButton } from './formly-types//button-type.component'
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 export function validateRequired(err, field: FormlyFieldConfig) {
 	return `${field.key} es requerido`
@@ -99,6 +101,7 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 		}),
 		FormlyMaterialModule,
 		FormlyModule.forRoot({ extras: { lazyRender: true } }),
+		AngularFireModule.initializeApp(environment.firebase),
 	],
 	providers: [
 		{provide: MAT_DATE_LOCALE, useValue: 'es-ES'}

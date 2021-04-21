@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "reproca-cba-gov-ar"
+  },
+  "targets": {
+    "pruebaempleo-32f88": {
+      "hosting": {
+        "formularioBanco": [
+          "pruebaempleo-32f88"
+        ]
+      }
+    }
   }
 }
