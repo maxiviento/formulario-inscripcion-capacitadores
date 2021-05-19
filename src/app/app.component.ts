@@ -1349,4 +1349,6 @@ export class AppComponent {
       alert(txt_alert)
     }
     }
+
   }
+
