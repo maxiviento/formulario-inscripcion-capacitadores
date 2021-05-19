@@ -1321,7 +1321,33 @@ export class AppComponent {
       console.error('error:', error);
     }
     if (this.form.invalid) {
-      alert("Algunos datos obligatorios son necesarios");
+      console.log(this.form.controls)
+      var fields: any = this.form.controls
+      var txt_alert = ""
+      for (var seccion of Object.keys(fields)) {
+        try {
+          for (var clave of Object.keys(fields[seccion]["controls"][0]["controls"])) {
+            let campo = fields[seccion]["controls"][0]["controls"][clave]
+            try {
+              let campos_internos = campo["controls"][0]["controls"]
+              for (let campos of Object.keys(campos_internos)) {
+                if (campos_internos[campos]["status"] == "INVALID") {
+                  txt_alert = txt_alert + "Falta llenar el campo " + campos + " en " + seccion + "\n"
+                }
+              }
+            } catch {
+
+              if (campo["status"] == "INVALID") {
+                txt_alert = txt_alert + "Falta llenar el campo " + clave + " en " + seccion + "\n"
+              }
+            }
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      alert(txt_alert)
+    }
     }
   }
-}
+
