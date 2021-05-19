@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
 import jsPDF from 'jspdf'
+import { validateRequired } from './app.module'
 
 
 @Component({
@@ -446,8 +447,9 @@ export class AppComponent {
       type: 'no repeat',
       templateOptions: {
         addText: 'Ingresar datos personales',
-        required: true,
       },
+      
+      
       fieldArray: {
         fieldGroup: [
           {
@@ -457,7 +459,8 @@ export class AppComponent {
               label: 'Nombre del/la Docente-Capacitador/a:',
               required: true,
               placeholder: 'Ingrese el nombre completo del docente'
-            }
+            },
+            
           },
           {
             key: 'Apellido',
@@ -493,7 +496,10 @@ export class AppComponent {
               pattern: '\\d{11}',
               required: true,
               placeholder: 'Ingrese un CUIL',
-            }
+            },
+            validation: {
+              show: true,
+            },
           },
           {
             key: 'Lugar de nacimiento',
@@ -1123,13 +1129,13 @@ export class AppComponent {
     //--------------------------------------------------------------------------------------------------------
 
     {
-      template: '<h3>Cursos</h3>'
+      template: '<div><h2>Certificación a la que se postula</h2></div>'
     },
     {
-      key: 'Cursos',
+      key: 'Certificación a la que se postula',
       type: 'repeat',
       templateOptions: {
-        addText: 'Agregar curso',
+        addText: 'Agregar certificación a la que se postula',
         required: true
       },
       fieldArray:{
@@ -1202,7 +1208,7 @@ export class AppComponent {
 
   createPdf() {
 
-    if (this.form.invalid) {
+    if (this.form.valid) {
       let modelo = Object.entries(this.model);
       //
       var doc = new jsPDF('p', 'mm', 'a4');
@@ -1266,7 +1272,7 @@ export class AppComponent {
             var texto_aux = ""
             for(var jj = 0; jj < text_arr_aux.length; jj++){
               texto_aux = texto_aux + text_arr_aux[jj]
-              if(jj%115==0 && jj != 0){
+              if(jj%88==0 && jj != 0){
                 text_arr.push(texto_aux)
                 texto_aux = ""
               }
@@ -1314,8 +1320,33 @@ export class AppComponent {
     } else (error) => {
       console.error('error:', error);
     }
-    //if (this.form.invalid) {
-    //  alert("Algunos datos obligatorios son necesarios")
-    //}
+    if (this.form.invalid) {
+      console.log(this.form.controls)
+      var fields: any = this.form.controls
+      var txt_alert = ""
+      for (var seccion of Object.keys(fields)) {
+        try {
+          for (var clave of Object.keys(fields[seccion]["controls"][0]["controls"])) {
+            let campo = fields[seccion]["controls"][0]["controls"][clave]
+            try {
+              let campos_internos = campo["controls"][0]["controls"]
+              for (let campos of Object.keys(campos_internos)) {
+                if (campos_internos[campos]["status"] == "INVALID") {
+                  txt_alert = txt_alert + "Falta llenar el campo " + campos + " en " + seccion + "\n"
+                }
+              }
+            } catch {
+
+              if (campo["status"] == "INVALID") {
+                txt_alert = txt_alert + "Falta llenar el campo " + clave + " en " + seccion + "\n"
+              }
+            }
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      alert(txt_alert)
+    }
+    }
   }
-}
