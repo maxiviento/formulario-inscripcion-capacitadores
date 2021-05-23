@@ -1317,9 +1317,7 @@ export class AppComponent {
       doc.save('InscripcionCapacitador' + nombreArchivo + '.pdf');
 
 
-    } else (error) => {
-      console.error('error:', error);
-    }
+    } 
     if (this.form.invalid) {
       console.log(this.form.controls)
       var fields: any = this.form.controls
